@@ -71,3 +71,16 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+<!-- To fill Mongo 6+ with data -->
+
+```bash
+cd /tmp
+apt update && apt install curl
+curl -L https://media.mongodb.org/zips.json > zips.json
+mongoimport --uri mongodb://root:admin@localhost:27017/Nest --authenticationDatabase=admin -c Zips --file=zips.json
+mongosh "mongodb://root:admin@localhost:27017" --username root --authenticationDatabase admin
+use Nest;
+db.Zips.find({}).forEach(function(e,i) { db.Zips.remove(e); e._id=new ObjectId(); db.Zips.insertOne(e); });
+exit
+exit
