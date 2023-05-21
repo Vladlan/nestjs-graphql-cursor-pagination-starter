@@ -7,6 +7,7 @@ import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import Zip from './zip/zip.entity';
 import { ZipModule } from './zip/zip.module';
+import ImportMetaData from './import-meta-data.entity';
 
 const mainContext = (context) => {
   const { req, res, connection } = context;
@@ -26,9 +27,9 @@ const mainContext = (context) => {
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url: 'mongodb://root:admin@localhost:27017/Nest?authSource=admin&readPreference=primary&ssl=false',
-      entities: [Zip],
+      entities: [Zip, ImportMetaData],
     }),
-    TypeOrmModule.forFeature([Zip]),
+    TypeOrmModule.forFeature([Zip, ImportMetaData]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       driver: ApolloDriver,
