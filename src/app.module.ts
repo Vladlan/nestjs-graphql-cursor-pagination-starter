@@ -8,6 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import Zip from './zip/zip.entity';
 import { ZipModule } from './zip/zip.module';
 import ImportMetaData from './import-meta-data.entity';
+import { HttpModule } from '@nestjs/axios';
 
 const mainContext = (context) => {
   const { req, res, connection } = context;
@@ -24,6 +25,7 @@ const mainContext = (context) => {
 
 @Module({
   imports: [
+    HttpModule,
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url: 'mongodb://root:admin@localhost:27017/Nest?authSource=admin&readPreference=primary&ssl=false',
