@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import Zip from './zip.entity';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class ZipService {
@@ -16,6 +17,8 @@ export class ZipService {
   }
 
   async findZipById(id: string) {
-    return await this.repo.findOneBy({ id });
+    return await this.repo.findOneBy({
+      _id: new Types.ObjectId(id),
+    });
   }
 }

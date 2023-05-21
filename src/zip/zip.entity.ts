@@ -1,21 +1,13 @@
 import { ObjectType } from '@nestjs/graphql';
 import { Field, ID } from '@nestjs/graphql';
-import {
-  Column,
-  Entity,
-  ObjectIdColumn,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 
 @ObjectType()
 @Entity({ name: 'Zips' })
 export default class Zip {
   @ObjectIdColumn({ update: false })
-  _id: string;
-
-  @PrimaryGeneratedColumn('uuid')
-  @Field(() => ID!)
-  id: string;
+  @Field(() => ID)
+  _id: ObjectId;
 
   @Field({ nullable: true })
   @Column()

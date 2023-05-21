@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type Zip {
-  id: ID!
+  _id: ID!
   city: String
   loc: [Float!]
   pop: Float
@@ -12,4 +12,5 @@ type Zip {
 
 type Query {
   getZips: [Zip!]!
+  getZip(id: String!): Zip!
 }

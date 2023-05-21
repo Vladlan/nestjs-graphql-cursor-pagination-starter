@@ -40,6 +40,7 @@
     "graphql-tools": "^8.3.6",
     "graphql-ws": "^5.11.2",
     "mongodb": "^4.10.0",
+    "mongoose": "^7.2.0",
     "nestjs-relay": "^4.0.4",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
