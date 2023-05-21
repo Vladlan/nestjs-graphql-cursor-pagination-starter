@@ -3,6 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import Zip from './zip.entity';
 import { Types } from 'mongoose';
+import { ConnectionArgs } from 'src/relay';
+import { ZipsConnection } from './zip.responses';
+import { findAll } from '../relay/utils/find-all';
 
 @Injectable()
 export class ZipService {
@@ -14,6 +17,10 @@ export class ZipService {
       skip: 0,
     });
     return zips;
+  }
+
+  async findAllZipsRelay(args: ConnectionArgs): Promise<ZipsConnection> {
+    return await findAll(args, this.repo);
   }
 
   async findZipById(id: string) {

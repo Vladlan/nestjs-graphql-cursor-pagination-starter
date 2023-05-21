@@ -10,7 +10,25 @@ type Zip {
   state: String
 }
 
+type ZipsConnection {
+  edges: [ZipEdge!]
+  pageInfo: ZipPageInfo
+}
+
+type ZipEdge {
+  cursor: String
+  node: Zip
+}
+
+type ZipPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
 type Query {
   getZips: [Zip!]!
+  zips(before: String, after: String, first: Float, last: Float): ZipsConnection!
   getZip(id: String!): Zip!
 }

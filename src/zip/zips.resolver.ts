@@ -1,6 +1,8 @@
 import { Resolver, Query, Args, ArgsType, Field } from '@nestjs/graphql';
 import Zip from './zip.entity';
 import { ZipService } from './zip.service';
+import { ConnectionArgs } from 'src/relay';
+import { ZipsConnection } from './zip.responses';
 
 @ArgsType()
 export class getZipArg {
@@ -15,15 +17,17 @@ export default class ZipsResolver {
   @Query(() => [Zip])
   public async getZips(): Promise<Zip[]> {
     const zips = await this.zipService.findAllZips();
-    console.log('zips: ', zips);
     return zips;
+  }
+
+  @Query(() => ZipsConnection, { name: 'zips' })
+  zips(@Args() args: ConnectionArgs) {
+    return this.zipService.findAllZipsRelay(args);
   }
 
   @Query(() => Zip)
   public async getZip(@Args() arg: getZipArg): Promise<Zip> {
-    console.log('arg: ', arg);
     const zip = await this.zipService.findZipById(arg.id);
-    console.log('zips: ', zip);
     return zip;
   }
 }
