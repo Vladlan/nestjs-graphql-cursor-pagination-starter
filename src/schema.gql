@@ -1,0 +1,15 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Zip {
+  id: ID!
+  city: String
+  loc: [Float!]
+  pop: Float
+  state: String
+}
+
+type Query {
+  getZips: [Zip!]!
+}

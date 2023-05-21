@@ -75,6 +75,7 @@ Nest is [MIT licensed](LICENSE).
 <!-- To fill Mongo 6+ with data -->
 
 ```bash
+docker exec -it mongodb-nest /bin/bash
 cd /tmp
 apt update && apt install curl
 curl -L https://media.mongodb.org/zips.json > zips.json
