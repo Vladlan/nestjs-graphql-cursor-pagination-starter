@@ -7,7 +7,7 @@ import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import Zip from './zip/zip.entity';
 import { ZipModule } from './zip/zip.module';
-import ImportMetaData from './import-meta-data.entity';
+import ImportMetaData from './ocm-import-meta.entity';
 import { HttpModule } from '@nestjs/axios';
 
 const mainContext = (context) => {

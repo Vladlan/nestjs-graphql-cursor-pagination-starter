@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import ImportMetaData from './import-meta-data.entity';
+import ImportMetaData from './ocm-import-meta.entity';
 import { TYPE_LAST_IMPORT_START_TIMESTAMP } from './constants';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom, map } from 'rxjs';
@@ -51,7 +51,7 @@ export class AppService {
       where: { type: TYPE_LAST_IMPORT_START_TIMESTAMP },
     });
     const since =
-      lastInsertData.lastImportStartTimestamp || lastImportStartTimestamp;
+      lastInsertData?.lastImportStartTimestamp || lastImportStartTimestamp;
     await firstValueFrom(this.getOcmData(since));
     if (lastInsertData) {
       return await this.repo.update(
